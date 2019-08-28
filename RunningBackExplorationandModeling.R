@@ -15,7 +15,7 @@ set.seed(69)
 
 # IMPORT RUNNING BACKS DATA FROM CSV FILE
 
-running_backs_data <- read.csv("C:/Users/Brian/Documents/NFL Data/running_backs_data.csv")
+running_backs_data <- read.csv("https://asayanalytics.com/mochtyak_rb")
 
 # CREATE SUMMARY STATISTICS FOR EACH VARIABLE
 
