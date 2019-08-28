@@ -33,31 +33,37 @@ boxplot(running_backs_data$rbtotattempts,
 	  running_backs_data$totrecyards,
 	  running_backs_data$totrectds)
 
-# CREATE HISTOGRAMS FOR EACH VARIABLE
+# CREATE HISTOGRAMS FOR EACH VARIABLE LOOKING TO PREDICT
 
-hist(running_backs_data$rbtotattempts, breaks = 30)
-hist(log(running_backs_data$rbtotattempts), breaks = 30)
+hist(running_backs_data$rbtotrushyards, breaks = 10)
 
-hist(running_backs_data$rbtotrushyards, breaks = 30)
-hist(log(running_backs_data$rbtotrushyards), breaks = 30)
+hist(running_backs_data$rbtotrushtds, breaks = 10)
 
-hist(running_backs_data$rbtotrushtds, breaks = 30)
-hist(log(running_backs_data$rbtotrushtds), breaks = 30)
+hist(running_backs_data$totreceptions, breaks = 10)
 
-hist(running_backs_data$longestrun, breaks = 30)
-hist(log(running_backs_data$longestrun), breaks = 30)
+hist(running_backs_data$totrecyards, breaks = 10)
 
-hist(running_backs_data$rbtotypa, breaks = 30)
-hist(log(running_backs_data$rbtotypa), breaks = 30)
+hist(running_backs_data$totrectds, breaks = 10)
 
-hist(running_backs_data$teamrushyards, breaks = 30)
+# CALCULATE PERCENT OF RUNNINGBACKS THAT RUSH FOR 1000 + YARDS
 
-hist(running_backs_data$teamrushtds, breaks = 30)
+percent_thousand_yard_rusher <- mean(running_backs_data$rbtotrushyards >= 1000)
 
-hist(running_backs_data$teamtotyards, breaks = 30)
+# CALCULATE PERCENT OF RUNNING BACKS THAT RUSH FOR 10 + TDS
 
-hist(running_backs_data$teamtottds, breaks = 30)
-hist(log(running_backs_data$teamtottds), breaks = 30)
+percent_10plustds <- mean(running_backs_data$rbtotrushtds >= 10)
+
+# CALCULATE PERCENT OF RUNNING BACKS THAT CATCH 50 + PASSES
+
+percent_50pluscatches <- mean(running_backs_data$totreceptions >= 50)
+
+# CALCULATE PERCENT OF RUNNING BACKS THAT HAVE 400 + RECEIVING YARDS
+
+percent_400plusrecyards <- mean(running_backs_data$totrecyards >= 400)
+
+# CALCULATE PERCENT OF RUNNING BACKS THAT CATCH 3 + TDS
+
+percent_3plusrectds <- mean(running_backs_data$totrectds >= 3)
 
 # CREATE SCATTER PLOTS FOR EACH VARIABLE
 
@@ -73,6 +79,12 @@ plot(running_backs_data$teamrushrank, running_backs_data$rbtotrushyards)
 plot(running_backs_data$teamrushrank, running_backs_data$rbtotattempts)
 plot(running_backs_data$teamrushrank, running_backs_data$longestrun)
 plot(running_backs_data$longestrun, running_backs_data$rbtotattempts)
+
+# CREATE CORRELATION MATRIX
+
+correlation_rb <- running_backs_data %>%
+                    select(-rbid, -teamid, -runningback, -team, - season) %>%
+                      cor()
 
 # CREATE TRAINING AND TEST DATA SETS TO TEST MODEL ACCURACY
 
