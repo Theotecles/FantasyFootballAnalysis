@@ -83,6 +83,7 @@ plot(running_backs_data$longestrun, running_backs_data$rbtotattempts)
 # CREATE CORRELATION MATRIX
 
 correlation_rb <- running_backs_data %>%
+		    na.omit() %>%
                     select(-rbid, -teamid, -runningback, -team, - season) %>%
                       cor()
 
