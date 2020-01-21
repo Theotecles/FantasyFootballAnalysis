@@ -1,4 +1,5 @@
 CREATE TABLE TEAMS (
+	ID int,
 	TeamName varchar(255),
 	TeamAbbreviation varchar(255),
 	PrimaryColor varchar(255),
